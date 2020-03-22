@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'HomePageBody.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -24,8 +26,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Text('test'),
-          //HomePageBody(),
+          HomePageBody(),
         ],
       ),
     );
