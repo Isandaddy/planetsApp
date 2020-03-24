@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'DetailPage.dart';
 import 'Style.dart';
 import 'model/Planet.dart';
 
@@ -11,6 +12,21 @@ class PlanetSummary extends StatelessWidget {
   PlanetSummary.vertical(this.planet) : horizontal = false;
   @override
   Widget build(BuildContext context) {
+
+    Widget _planetValue({String value, String image}) {
+      return Container(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Image.asset(image, height: 12.0,),
+            Container(width: 8.0,),
+            Text(
+              value == planet.gravity ? planet.gravity : planet.distance, style: regularTextStyle(),
+            )
+          ],
+        ),
+      );
+    }
 
     final planetCardContent =Container(
       margin: EdgeInsets.fromLTRB(
@@ -35,7 +51,19 @@ class PlanetSummary extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 flex: horizontal ? 1 : 0,
-                //child: _planetValue(),
+                child: _planetValue(
+                  value: planet.distance,
+                  image: 'assets/img/ic_distance.png'
+                ),
+              ),
+              Container(
+                width: 32.0,
+              ),
+              Expanded(
+                  flex: horizontal ? 1 : 0,
+                  child: _planetValue(
+                      value: planet.gravity,
+                      image: 'assets/img/ic_gravity.png')
               ),
             ],
           ),
@@ -63,13 +91,13 @@ class PlanetSummary extends StatelessWidget {
 
     return GestureDetector(
       onTap: horizontal 
-        ? () => print('object')
-        //Navigator.of(context).push(
-          // PageRouteBuilder(
-          //   pageBuilder: (_, __, ___) => DetailPage(planet),
-          //   transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child,)
-          //   )
-        
+        ? () =>
+        Navigator.of(context).push(
+           PageRouteBuilder(
+             pageBuilder: (_, __, ___) => DetailPage(planet),
+             transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child,)
+             )
+        )
         : null,
       child: Container(
         margin: EdgeInsets.symmetric(
