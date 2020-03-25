@@ -13,6 +13,19 @@ class PlanetSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final planetThumbnail =Container(
+      margin: EdgeInsets.symmetric(vertical: 16.0),
+      alignment: horizontal ? FractionalOffset.centerLeft : FractionalOffset.center,
+      child: Hero(
+          tag: "planet_hero ${planet.id}",
+          child: Image(
+            image: AssetImage(planet.image),
+            height: 100.0,
+            width: 100.0,
+          )
+      ),
+    );
+
     Widget _planetValue({String value, String image}) {
       return Container(
         child: Row(
@@ -107,6 +120,7 @@ class PlanetSummary extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             planetCard,
+            planetThumbnail,
           ],
         ),
       ),
